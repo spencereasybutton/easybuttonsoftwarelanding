@@ -11,10 +11,49 @@
     .hero { position: relative; overflow: hidden; background: radial-gradient(circle at top right, rgba(220, 38, 38, 0.45), transparent 34%), radial-gradient(circle at bottom left, rgba(255,255,255,0.12), transparent 32%), #09090b; color: white; }
     .container { width: min(1180px, calc(100% - 40px)); margin: 0 auto; }
     header { display: flex; align-items: center; justify-content: space-between; padding: 26px 0; position: relative; z-index: 2; }
-    .brand { display: flex; align-items: center; gap: 14px; }
-    .logo { width: 46px; height: 46px; border-radius: 16px; background: #dc2626; display: grid; place-items: center; font-weight: 900; box-shadow: 0 12px 28px rgba(220, 38, 38, 0.35); }
-    .brand-title { font-size: 20px; font-weight: 900; letter-spacing: -0.03em; }
-    .brand-subtitle { font-size: 11px; letter-spacing: 0.25em; text-transform: uppercase; color: #a1a1aa; }
+    .brand { display: flex; align-items: center; }
+    .logo {
+      position: relative;
+      height: 72px;
+      width: auto;
+      aspect-ratio: 2000 / 804;
+      flex-shrink: 0;
+      overflow: hidden;
+      border-radius: 24px;
+      clip-path: inset(0 round 24px);
+    }
+    .logo::before,
+    .logo::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 16px;
+      z-index: 1;
+      pointer-events: none;
+    }
+    .logo::before {
+      left: 0;
+      background: linear-gradient(to right, #09090b, transparent);
+    }
+    .logo::after {
+      right: 0;
+      background: linear-gradient(to left, #09090b, transparent);
+    }
+    .logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      -webkit-mask-image:
+        linear-gradient(to right, transparent 0%, #000 4%, #000 96%, transparent 100%),
+        linear-gradient(to bottom, transparent 0%, #000 19%, #000 81%, transparent 100%);
+      mask-image:
+        linear-gradient(to right, transparent 0%, #000 4%, #000 96%, transparent 100%),
+        linear-gradient(to bottom, transparent 0%, #000 19%, #000 81%, transparent 100%);
+      -webkit-mask-composite: source-in;
+      mask-composite: intersect;
+    }
     nav { display: flex; gap: 30px; color: #d4d4d8; font-size: 14px; }
     .button { display: inline-flex; align-items: center; justify-content: center; gap: 10px; border-radius: 999px; padding: 13px 22px; border: 1px solid transparent; font-weight: 800; cursor: pointer; transition: 0.2s ease; }
     .button-red { background: #dc2626; color: white; }
@@ -69,16 +108,16 @@
     .footer-inner { display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
     .footer-links { display: flex; gap: 22px; }
     @media (max-width: 900px) { nav { display: none; } .hero-grid, .product-grid, .why-grid, .benefit-grid, .cta-box { grid-template-columns: 1fr; } .hero-grid { padding: 54px 0 82px; } .cta-box { padding: 34px; } }
-    @media (max-width: 560px) { header .button { display: none; } .container { width: min(100% - 28px, 1180px); } section { padding: 70px 0; } .card, .dashboard, .cta-box { padding: 22px; } }
+    @media (max-width: 560px) { header .button { display: none; } .container { width: min(100% - 28px, 1180px); } section { padding: 70px 0; } .card, .dashboard, .cta-box { padding: 22px; } .logo { height: 48px; width: auto; } }
   </style>
 </head>
 <body>
   <main>
     <div class="hero">
       <header class="container">
-        <a class="brand" href="#"><div class="logo">EB</div><div><div class="brand-title">Easy Button Software</div><div class="brand-subtitle">Real Estate Tools</div></div></a>
+        <a class="brand" href="#"><div class="logo"><img src="assets/Software%20(1).jpg" alt="Easy Button Software" /></div></a>
         <nav><a href="#products">Products</a><a href="#why">Why Easy Button</a><a href="#contact">Get Started</a></nav>
-        <a class="button button-red" href="#contact">Get Started</a>
+        <a class="button button-red" href="#products">View Products →</a>
       </header>
       <div class="container hero-grid">
         <div>
@@ -90,7 +129,7 @@
         <div class="dashboard-wrap"><div class="glow"></div><div class="dashboard"><div class="dashboard-inner"><div class="dashboard-top"><div><div class="dashboard-label">Command Center</div><div class="dashboard-title">Easy Button Suite</div></div><div class="live-pill">Live</div></div><div class="steps"><div class="step"><div class="step-left"><div class="number">1</div>Upload list for skip tracing</div><div class="check">✓</div></div><div class="step"><div class="step-left"><div class="number">2</div>Review matched contacts</div><div class="check">✓</div></div><div class="step"><div class="step-left"><div class="number">3</div>Move leads into CRM</div><div class="check">✓</div></div><div class="step"><div class="step-left"><div class="number">4</div>Track follow-up and deals</div><div class="check">✓</div></div></div></div></div></div>
       </div>
     </div>
-    <section id="products"><div class="container"><div class="section-header"><div class="eyebrow">Current Products</div><h2>Tools built around real estate work.</h2><p>Start with the essentials: better contact data and a CRM that keeps your real estate business organized without unnecessary complexity.</p></div><div class="product-grid"><div class="card"><div class="icon-box">◎</div><h3>Easy Button Skip Trace</h3><p>Accurate, simple skip tracing tools built for real estate professionals who need reliable contact data without a complicated workflow.</p><div class="bullets"><div class="bullet"><span>✓</span><span>Multiple data options</span></div><div class="bullet"><span>✓</span><span>Fast list processing</span></div><div class="bullet"><span>✓</span><span>Simple upload and results flow</span></div></div><a class="button button-red" href="#contact">Explore Skip Tracing →</a></div><div class="card"><div class="icon-box">⌂</div><h3>Easy Button CRM</h3><p>A real estate CRM designed to stay simple, organized, and easy to use so teams can focus on conversations, follow-up, and deals.</p><div class="bullets"><div class="bullet"><span>✓</span><span>Built for real estate workflows</span></div><div class="bullet"><span>✓</span><span>Simple contact management</span></div><div class="bullet"><span>✓</span><span>Easy follow-up tracking</span></div></div><a class="button button-red" href="#contact">Explore the CRM →</a></div></div></div></section>
+    <section id="products"><div class="container"><div class="section-header"><div class="eyebrow">Current Products</div><h2>Tools built around real estate work.</h2><p>Start with the essentials: better contact data and a CRM that keeps your real estate business organized without unnecessary complexity.</p></div><div class="product-grid"><div class="card"><div class="icon-box">◎</div><h3>Easy Button Skip Trace</h3><p>Accurate, simple skip tracing tools built for real estate professionals who need reliable contact data without a complicated workflow.</p><div class="bullets"><div class="bullet"><span>✓</span><span>Multiple data options</span></div><div class="bullet"><span>✓</span><span>Fast list processing</span></div><div class="bullet"><span>✓</span><span>Simple upload and results flow</span></div></div><a class="button button-red" href="https://www.easybuttonskiptrace.com" target="_blank" rel="noopener noreferrer">Explore Skip Tracing →</a></div><div class="card"><div class="icon-box">⌂</div><h3>Easy Button CRM</h3><p>A real estate CRM designed to stay simple, organized, and easy to use so teams can focus on conversations, follow-up, and deals.</p><div class="bullets"><div class="bullet"><span>✓</span><span>Built for real estate workflows</span></div><div class="bullet"><span>✓</span><span>Simple contact management</span></div><div class="bullet"><span>✓</span><span>Easy follow-up tracking</span></div></div><a class="button button-red" href="https://www.easybuttoncrm.com" target="_blank" rel="noopener noreferrer">Explore the CRM →</a></div></div></div></section>
     <section id="why" class="why"><div class="container why-grid"><div class="why-copy"><div class="eyebrow">Why Easy Button</div><h2>Modern software without the learning curve.</h2><p>Real estate professionals need practical tools that help them move faster. Easy Button Software is built around speed, simplicity, and clean workflows.</p></div><div class="benefit-grid"><div class="benefit-card"><div class="icon-box">↗</div><h3>Simple by design</h3><p>Software should save time, not create more steps. Every product is built to be easy to understand and fast to use.</p></div><div class="benefit-card"><div class="icon-box">◆</div><h3>Built for professionals</h3><p>Purpose-built tools for real estate teams that need dependable systems for prospecting, follow-up, and growth.</p></div><div class="benefit-card"><div class="icon-box">●</div><h3>One software family</h3><p>Easy Button Software brings key real estate tools under one clean brand, making it easier to manage your business stack.</p></div></div></div></section>
     <section id="contact" class="cta"><div class="container"><div class="cta-box"><div><div class="eyebrow">Get Started</div><h2>Bring your real estate software stack under one easy brand.</h2><p>Use Easy Button Software to simplify prospecting, data, follow-up, and contact management for your real estate business.</p></div><div class="cta-actions"><a class="button button-red" href="#">Start Now →</a><a class="button button-outline" href="#">Request Demo</a></div></div></div></section>
     <footer><div class="container footer-inner"><p>© 2026 Easy Button Software. All rights reserved.</p><div class="footer-links"><a href="#">Privacy Policy</a><a href="#">Terms of Service</a><a href="#">Contact</a></div></div></footer>
